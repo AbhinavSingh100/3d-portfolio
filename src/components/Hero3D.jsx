@@ -1,239 +1,203 @@
 import React, { useRef, useState } from 'react'
-import { Text, RoundedBox } from '@react-three/drei'
+import { Text, RoundedBox, Sphere, Torus, Tetrahedron, Octahedron, Plane } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export function Hero3D() {
   const groupRef = useRef()
-  const [hovered, setHovered] = useState(false)
+  const octahedronRef = useRef()
+  const [hoveredButton, setHoveredButton] = useState(null)
 
-  // Subtle floating animation
+  // Animate the octahedron
   useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.position.y = 2.5 + Math.sin(clock.getElapsedTime() * 0.5) * 0.1
+    if (octahedronRef.current) {
+      octahedronRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.4) * 0.3
+      octahedronRef.current.rotation.y += 0.015
+      octahedronRef.current.rotation.z = Math.cos(clock.getElapsedTime() * 0.3) * 0.2
     }
   })
 
   return (
-    <group ref={groupRef} position={[0, 2.5, 2.1]}>
-      {/* Main Title */}
+    <group position={[0, 2.5, 2.1]}>
+      {/* Profile Photo Space */}
+      <group position={[-6, 2, 0]} ref={octahedronRef}>
+        {/* Point lights to make it glow like a lamp */}
+        
+        <Octahedron
+          args={[2.3]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial 
+            color="black"
+            roughness={0.1}
+            metalness={0.3}
+            transparent={true}
+            opacity={0.8}
+          />
+        </Octahedron>
+        
+        {/* Additional glow effect */}
+        <Octahedron
+          args={[3]}
+          castShadow={false}
+          receiveShadow={false}
+        >
+          <meshBasicMaterial 
+            color="black"
+            transparent={true}
+            opacity={0.2}
+          />
+        </Octahedron>
+      </group>
+
+      {/* Name */}
       <Text
-        position={[0, 2, 0]}
-        fontSize={1.5}
-        color="black"
+        position={[3, 2, 0]}
+        fontSize={2.5}
+        lineHeight={0.9}
+        color="#000000"
         anchorX="center"
         anchorY="middle"
-        fontWeight="800"
+        fontWeight="700"
+        font='src\assets\fonts\uni-sans\Uni Sans Heavy.otf'
         castShadow
         receiveShadow
       >
-        Creative
+      Abhinav{`\n`}Singh
       </Text>
 
+      {/* One-liner Description */}
       <Text
-        position={[0, 0.3, 0]}
-        fontSize={1.5}
-        color="#667eea"
+        position={[0, -0.5, 0]}
+        fontSize={0.6}
+        font='src\assets\fonts\uni-sans\Uni Sans Heavy.otf'
+        color="#666666"
         anchorX="center"
         anchorY="middle"
-        fontWeight="800"
-        castShadow
-        receiveShadow
+        maxWidth={15}
+        textAlign="center"
+        lineHeight={1.3}
       >
-        Developer
+        Full-Stack Developer & 3D Web Enthusiast
       </Text>
 
-      <Text
-        position={[0, -1.4, 0]}
-        fontSize={1.5}
-        color="black"
-        anchorX="center"
-        anchorY="middle"
-        fontWeight="800"
-        castShadow
-        receiveShadow
-      >
-        & Designer
-      </Text>
+      {/* About Section */}
+      <group position={[0, -1.5, 0]}>
+        <Text
+          position={[0, 0.5, 0]}
+          fontSize={0.7}
+          color="#000000"
+          anchorX="center"
+          anchorY="middle"
+          fontWeight="600"
+        >
+          About
+        </Text>
+        
+        <Text
+          position={[0, -0.8, 0]}
+          fontSize={0.45}
+          color="#444444"
+          anchorX="center"
+          anchorY="middle"
+          maxWidth={18}
+          textAlign="center"
+          lineHeight={1.5}
+        >
+          I create immersive digital experiences combining modern{'\n'}
+          web technologies with cutting-edge 3D design.{'\n'}
+          Passionate about React, Three.js, and innovative UX.
+        </Text>
+      </group>
+
+      {/* Action Buttons */}
+      <group position={[0, -3.5, 0]}>
+        {/* Resume Button */}
+        <RoundedBox
+          position={[-2.8, 0, 0]}
+          args={[4.5, 1.2, 0.001]}
+          radius={0.3}
+          smoothness={8}
+          onPointerEnter={() => setHoveredButton('resume')}
+          onPointerLeave={() => setHoveredButton(null)}
+          onClick={() => console.log('Download Resume')}
+        >
+          <meshStandardMaterial 
+            color={hoveredButton === 'resume' ? "#333333" : "#000000"}
+            roughness={1.0}
+            metalness={0.0}
+          />
+        </RoundedBox>
+        
+        <Text
+          position={[-2.8, 0, 0.01]}
+          fontSize={0.45}
+          color="#ffffff"
+          anchorX="center"
+          anchorY="middle"
+          fontWeight="600"
+        >
+          Resume
+        </Text>
+
+        {/* Contact Button */}
+        <RoundedBox
+          position={[2.8, 0, 0]}
+          args={[4.5, 1.2, 0.001]}
+          radius={0.3}
+          smoothness={8}
+          onPointerEnter={() => setHoveredButton('contact')}
+          onPointerLeave={() => setHoveredButton(null)}
+          onClick={() => console.log('Contact Me')}
+        >
+          <meshStandardMaterial 
+            color={hoveredButton === 'contact' ? "#f0f0f0" : "#ffffff"}
+            roughness={1.0}
+            metalness={0.0}
+          />
+        </RoundedBox>
+        
+        <Text
+          position={[2.8, 0, 0.01]}
+          fontSize={0.45}
+          color="#000000"
+          anchorX="center"
+          anchorY="middle"
+          fontWeight="600"
+        >
+          Contact Me
+        </Text>
+      </group>
 
       {/* Status Badge */}
-      <group position={[0, 3.5, 0]}>
-        {/* Badge Background */}
-        <mesh castShadow receiveShadow>
-          <planeGeometry args={[3, 0.6]} />
-          <meshStandardMaterial 
-            color="#000000" 
-            transparent 
-            opacity={0.3}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
-        
-        {/* Badge Text */}
-        <Text
-          position={[0, 0, 0.01]}
-          fontSize={0.3}
-          color="#00ff88"
-          anchorX="center"
-          anchorY="middle"
-          fontWeight="600"
-        >
-          ● Available for work
-        </Text>
-      </group>
-
-      {/* Description */}
-      <Text
-        position={[0, -2.8, 0]}
-        fontSize={0.4}
-        color="black"
-        anchorX="center"
-        anchorY="middle"
-        maxWidth={12}
-        textAlign="center"
-        lineHeight={1.2}
-        castShadow
-        receiveShadow
-      >
-        I craft exceptional digital experiences through innovative{'\n'}
-        web development and 3D design.{'\n'}
-        Let's bring your ideas to life.
-      </Text>
-
-      {/* Interactive Buttons */}
-      <group position={[0, -4.5, 0]}>
-        {/* Primary Button */}
+      <group position={[0, -5.5, 0]}>
         <RoundedBox
-          position={[-2, 0, 0]}
-          args={[3, 0.8, 0.2]}
-          radius={0.1}
-          smoothness={4}
+          args={[5, 0.8, 0.15]}
+          radius={0.4}
+          smoothness={8}
           castShadow
           receiveShadow
-          onPointerEnter={() => setHovered(true)}
-          onPointerLeave={() => setHovered(false)}
-          onClick={() => console.log('View My Work clicked')}
         >
           <meshStandardMaterial 
-            color={hovered ? "#7b8ef0" : "#667eea"} 
-            transparent 
-            opacity={0.9}
-          />
-        </RoundedBox>
-        
-        <Text
-          position={[-2, 0, 0.06]}
-          fontSize={0.3}
-          color="black"
-          anchorX="center"
-          anchorY="middle"
-          fontWeight="600"
-        >
-          View My Work
-        </Text>
-
-        {/* Secondary Button */}
-        <RoundedBox
-          position={[2, 0, 0]}
-          args={[3, 0.8, 0.2]}
-          radius={0.1}
-          smoothness={4}
-          castShadow
-          receiveShadow
-          onClick={() => console.log('Get In Touch clicked')}
-        >
-          <meshStandardMaterial 
-            color="black" 
+            color="#000000"
             transparent 
             opacity={0.1}
+            roughness={1.0}
+            metalness={0.0}
           />
         </RoundedBox>
         
         <Text
-          position={[2, 0, 0.06]}
-          fontSize={0.3}
-          color="black"
+          position={[0, 0, 0.08]}
+          fontSize={0.35}
+          color="#00aa00"
           anchorX="center"
           anchorY="middle"
-          fontWeight="600"
+          fontWeight="500"
         >
-          Get In Touch
+          ● Available for opportunities
         </Text>
-      </group>
-
-      {/* Stats Section */}
-      <group position={[0, -6, 0]}>
-        {/* Left Stat */}
-        <group position={[-3, 0, 0]}>
-          <Text
-            position={[0, 0.3, 0]}
-            fontSize={0.8}
-            color="black"
-            anchorX="center"
-            anchorY="middle"
-            fontWeight="700"
-            castShadow
-          >
-            50+
-          </Text>
-          <Text
-            position={[0, -0.3, 0]}
-            fontSize={0.25}
-            color="black"
-            anchorX="center"
-            anchorY="middle"
-          >
-            PROJECTS
-          </Text>
-        </group>
-
-        {/* Center Stat */}
-        <group position={[0, 0, 0]}>
-          <Text
-            position={[0, 0.3, 0]}
-            fontSize={0.8}
-            color="black"
-            anchorX="center"
-            anchorY="middle"
-            fontWeight="700"
-            castShadow
-          >
-            3+
-          </Text>
-          <Text
-            position={[0, -0.3, 0]}
-            fontSize={0.25}
-            color="black"
-            anchorX="center"
-            anchorY="middle"
-          >
-            YEARS
-          </Text>
-        </group>
-
-        {/* Right Stat */}
-        <group position={[3, 0, 0]}>
-          <Text
-            position={[0, 0.3, 0]}
-            fontSize={0.8}
-            color="black"
-            anchorX="center"
-            anchorY="middle"
-            fontWeight="700"
-            castShadow
-          >
-            ∞
-          </Text>
-          <Text
-            position={[0, -0.3, 0]}
-            fontSize={0.25}
-            color="black"
-            anchorX="center"
-            anchorY="middle"
-          >
-            PASSION
-          </Text>
-        </group>
       </group>
     </group>
   )
