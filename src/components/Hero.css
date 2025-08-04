@@ -1,22 +1,70 @@
-/* Hero Section Styles */
-.hero-container {
+/* Hero Wrapper - Main Container */
+.hero-wrapper {
+  position: relative;
   width: 100%;
   height: 100vh;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Canvas for objects BEHIND the text */
+.canvas-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; 
+}
+
+.portfolio {
+  z-index: 2;
+  position: absolute;
+  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* HTML Content Layer in the MIDDLE */
+.hero-content-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Sits above the back canvas */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+  /* Let mouse events pass through the container but not the content inside */
+  pointer-events: auto; 
 }
 
+/* Canvas for objects IN FRONT of the text */
+.canvas-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3; /* Sits on top of everything */
+  /* This canvas must NOT block mouse events from reaching the HTML */
+  pointer-events: none;
+}
+
+
+/* --- YOUR EXISTING STYLES --- */
+/* You can keep most of your other styles, but ensure the content re-enables pointer events */
+
+/* Hero Content Styles */
 .hero-content {
   max-width: 600px;
   text-align: center;
-  z-index: 10;
   animation: fadeInUp 1s ease-out;
+  pointer-events: auto; /* Re-enable pointer events for the content block */
 }
 
 /* Badge */
@@ -86,42 +134,6 @@
   font-weight: 600;
 }
 
-/* Stats */
-.hero-stats {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  animation: fadeIn 1s ease-out 0.8s both;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stat-number {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.25rem;
-}
-
-.stat-label {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
 /* Action Buttons */
 .hero-actions {
   display: flex;
@@ -169,40 +181,7 @@
   transform: translateY(-2px);
 }
 
-/* Scroll Indicator */
-.hero-scroll {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  animation: fadeIn 1s ease-out 1.2s both;
-}
-
-.scroll-indicator {
-  width: 2px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 1px;
-  position: relative;
-  overflow: hidden;
-}
-
-.scroll-line {
-  width: 100%;
-  height: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 1px;
-  animation: scrollIndicator 2s ease-in-out infinite;
-}
-
-.scroll-text {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-/* Animations */
+/* Animations (Keep your existing animations) */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -252,48 +231,18 @@
   }
 }
 
-@keyframes scrollIndicator {
-  0% {
-    transform: translateY(-100%);
-  }
-  50% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-/* Responsive Design */
+/* Responsive Design (Keep your existing responsive styles) */
 @media (max-width: 768px) {
   .hero-container {
     padding: 1rem;
   }
-  
-  .hero-stats {
-    gap: 1rem;
-  }
-  
   .hero-actions {
     flex-direction: column;
     align-items: center;
   }
-  
   .btn-primary, .btn-secondary {
     width: 100%;
     max-width: 250px;
     justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-stats {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .stat-divider {
-    width: 40px;
-    height: 1px;
   }
 }

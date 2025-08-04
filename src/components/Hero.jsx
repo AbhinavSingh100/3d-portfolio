@@ -1,64 +1,53 @@
 import React from 'react'
 import './Hero.css'
+import ThreeDComp from './ThreeDComp'
+import Portfolio from './Portfolio'
 
 const Hero = () => {
   return (
-    <div className="hero-container">
-      <div className="hero-content">
-        <div className="hero-badge">
-          <span className="badge-dot"></span>
-          Available for work
-        </div>
-        
-        <h1 className="hero-title">
-          <span className="title-line">Creative</span>
-          <span className="title-line gradient-text">Developer</span>
-          <span className="title-line">& Designer</span>
-        </h1>
-        
-        <p className="hero-description">
-          I craft exceptional digital experiences through innovative 
-          <span className="highlight"> web development</span> and 
-          <span className="highlight"> 3D design</span>. 
-          Let's bring your ideas to life.
-        </p>
-        
-        <div className="hero-stats">
-          <div className="stat-item">
-            <span className="stat-number">50+</span>
-            <span className="stat-label">Projects</span>
+    <div className="hero-wrapper">
+      {/* Layer 1: Canvas for objects BEHIND the HTML */}
+      <div className="canvas-back">
+        <ThreeDComp inFront={false} />
+      </div>
+
+      {/* Layer 2: Your HTML Content */}
+      {/* <div className="hero-content-layer">
+        <div className="hero-content">
+          <div className="hero-badge">
+            <div className="badge-dot"></div>
+            Welcome to my portfolio
           </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <span className="stat-number">3+</span>
-            <span className="stat-label">Years</span>
-          </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <span className="stat-number">∞</span>
-            <span className="stat-label">Passion</span>
-          </div>
-        </div>
-        
-        <div className="hero-actions">
-          <button className="btn-primary">
-            <span>View My Work</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
           
-          <button className="btn-secondary">
-            <span>Get In Touch</span>
-          </button>
-        </div>
-        
-        <div className="hero-scroll">
-          <div className="scroll-indicator">
-            <div className="scroll-line"></div>
+          <h1 className="hero-title">
+            <span className="title-line">Creative</span>
+            <span className="title-line gradient-text">Developer</span>
+            <span className="title-line">& Designer</span>
+          </h1>
+          
+          <p className="hero-description">
+            I create <span className="highlight">immersive digital experiences</span> that 
+            blend cutting-edge technology with stunning visual design. Let's build something 
+            extraordinary together.
+          </p>
+          
+          <div className="hero-actions">
+            <button className="btn-primary">
+              View My Work
+            </button>
+            <button className="btn-secondary">
+              Get In Touch
+            </button>
           </div>
-          <span className="scroll-text">Scroll to explore</span>
         </div>
+      </div> */}
+      <div className="portfolio">
+        <Portfolio />
+      </div>
+
+      {/* Layer 3: Canvas for objects IN FRONT of the HTML */}
+      <div className="canvas-front">
+        <ThreeDComp inFront={true} />
       </div>
     </div>
   )
