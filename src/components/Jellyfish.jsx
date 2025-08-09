@@ -14,13 +14,28 @@ export function Jellyfish({ inFront }) {
   const jelly1 = scene.clone();
   const jelly2 = scene.clone();
 
-  // Enable shadows on cloned instances
+  // Enable shadows and ensure materials can receive lighting
   useEffect(() => {
     [jelly1, jelly2].forEach(jelly => {
       jelly.traverse((child) => {
         if (child.isMesh) {
           child.castShadow = true
           child.receiveShadow = true
+          
+          // Ensure material can receive lighting
+          if (child.material) {
+            // If it's a basic material, convert to standard for lighting
+            // const basicMat = child.material
+            // child.material = new THREE.MeshStandardMaterial({
+            //   map: basicMat.map,
+            //   color: new THREE.Color(0xf5f122), //green
+            //   transparent: basicMat.transparent,
+            //   opacity: basicMat.opacity
+            // })
+            child.material.opacity = 0.5
+            // Make sure material can receive lights
+            child.material.needsUpdate = true
+          }
         }
       })
     })
@@ -65,10 +80,30 @@ export function Jellyfish({ inFront }) {
     jelly2Ref.current.lookAt(jelly2Ref.current.position.clone().add(new THREE.Vector3(0, 1, 0)))
   })
 
+  const jellyfish = (ref, object) => {
+    return (
+      <group ref={ref}>
+        <primitive object={object} scale={2.5} castShadow />
+        <pointLight
+          position={[0, 16, 0]}
+          intensity={50}
+          distance={20}
+          color="#D6D6D6"
+        />
+
+        {/* Add a helper to visualize the light (remove in production) */}
+        <mesh position={[0, 16, 0]}>
+          <sphereGeometry args={[0.1, 8, 8]} />
+          <meshBasicMaterial color="#ff00ff" />
+        </mesh>
+      </group>
+    )
+  }
+
   return (
     <>
-      <primitive ref={jelly1Ref} object={jelly1} scale={2.5} castShadow />
-      <primitive ref={jelly2Ref} object={jelly2} scale={2.5} castShadow />
+      {jellyfish(jelly1Ref, jelly1)}
+      {jellyfish(jelly2Ref, jelly2)}
     </>
   )
 }

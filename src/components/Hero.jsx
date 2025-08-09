@@ -2,10 +2,14 @@ import React from 'react'
 import './Hero.css'
 import ThreeDComp from './ThreeDComp'
 import Portfolio from './Portfolio'
+import image from '../assets/bg_landscape2.png'
 
 const Hero = () => {
   return (
     <div className="hero-wrapper">
+      <div className="w-full h-screen relative">
+        <img src={image} alt="Background" className="w-full h-full object-cover" />
+      </div>
       {/* Layer 1: Canvas for objects BEHIND the HTML */}
       <div className="canvas-back">
         <ThreeDComp inFront={false} />

@@ -1,0 +1,10 @@
+a:hover{
+
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+a{
+    padding-left: 10px;
+    padding-right: 10px;
+}
