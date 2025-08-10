@@ -5,6 +5,9 @@ import ProjectsSection from './sections/ProjectsSection';
 import BlogsSection from './sections/BlogsSection';
 import GithubTab from './sections/GithubTab';
 import Navbar from './Navbar';
+import FooterSection from './sections/FooterSection';
+import AboutSection from './sections/AboutSection';
+import SkillsSection from './sections/SkillsSection';
 
 // --- Helper Components for organization ---
 
@@ -203,15 +206,18 @@ const Portfolio = () => {
     return (
         <>
             <div className="flex flex-col items-center justify-center">
-                <div className='antialiased flex flex-col items-center pt-20 relative w-[50vw] text-white'>
+                <div className='antialiased flex flex-col items-center pt-20 relative w-full md:w-[50vw] text-white'>
                     <HeroSection />
+                    <AboutSection />
+                    <SkillsSection />
                     <ExperienceSection />
+                    <GithubTab />
                     <ProjectsSection />
                     <BlogsSection />
-                    <div className='fixed bottom-10 left-[50%] translate-x-[-50%]'>
+                    <div className='fixed top-[-10px] left-[50%] translate-x-[-50%]'>
                         <Navbar />
                     </div>
-                    <GithubTab />
+                    <FooterSection />
                 </div>
                 
             </div>

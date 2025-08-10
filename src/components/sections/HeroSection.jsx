@@ -1,35 +1,58 @@
-import React from 'react'
+import React from 'react';
+import { Github, Twitter, Linkedin, Download, Instagram, Youtube, Mail } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="relative z-10 h-screen w-full flex items-center justify-center">
-      <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl shadow-xl p-8 max-w-xl text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+    <section className="relative w-full flex flex-col items-start justify-center text-white p-4">
+      <div className="max-w-2xl">
+        <h1 className="text-5xl md:text-5xl font-black uni-sans-heavy leading-none tracking-tight text-shadow-lg">
           Abhinav Singh
         </h1>
-        <h2 className="text-xl md:text-2xl text-pink-300 font-medium mb-4">
-          Passionate Designer
+        <h2 className="text-2xl md:text-3xl lora text-cyan-300 mt-4">
+          programmer • designer
         </h2>
-        <p className="text-gray-200 text-base md:text-lg mb-6">
-          I blend creativity with code to craft immersive, beautiful digital experiences.
+        <p className="mt-6 text-lg md:text-xl lora text-gray-300 max-w-xl mx-auto">
+          Crafting immersive and beautiful web experiences that flow like the ocean.
         </p>
-        <div className="flex justify-center gap-4">
+        <div className="mt-8 flex flex-col md:flex-row items-center justify-start gap-4">
           <a
-            href="#projects"
-            className="px-6 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white border border-white/30 transition-all"
+            href="/path-to-your-resume.pdf" // IMPORTANT: Update this path
+            download
+            className="flex items-center gap-2 px-8 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white font-semibold transition-all duration-300 shadow-lg"
           >
-            View Work
+            <Download size={20} />
+            My Resume
           </a>
           <a
-            href="#contact"
-            className="px-6 py-2 rounded-full bg-pink-500 hover:bg-pink-600 text-white transition-all"
+            href="#projects"
+            className="px-8 py-3 rounded-xl bg-cyan-400/10 backdrop-blur-md border border-cyan-400/20 text-cyan-300 font-semibold hover:bg-cyan-400/20 transition-all duration-300 shadow-lg"
           >
-            Contact Me
+            Explore My Work
           </a>
         </div>
       </div>
+      <div className="flex items-center gap-2 py-5">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 transition-all duration-300">
+          <Github size={20} />
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 transition-all duration-300">
+          <Linkedin size={20} />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 transition-all duration-300">
+          <Twitter size={20} />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 transition-all duration-300">
+          <Instagram size={20} />
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 transition-all duration-300">
+          <Youtube size={20} />
+        </a>
+        <a href="mailto:youremail@example.com" className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 transition-all duration-300">
+          <Mail size={20} />
+        </a>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

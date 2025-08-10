@@ -1,1 +1,128 @@
 @import "tailwindcss";
+
+/* Lora Font Family */
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 400 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Static font fallbacks for better compatibility */
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/Lora/static/Lora-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/Lora/static/Lora-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('./assets/fonts/Lora/static/Lora-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Playfair Display Font Family */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 400 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Static font fallbacks for better compatibility */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/fonts/Playfair_Display/static/PlayfairDisplay-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/fonts/Playfair_Display/static/PlayfairDisplay-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/fonts/Playfair_Display/static/PlayfairDisplay-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+.lora {
+    font-family: 'Lora', sans-serif;
+}
+
+.playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Uni Sans Font Family */
+@font-face {
+    font-family: 'Uni Sans';
+    src: url('./assets/fonts/uni-sans/Uni Sans Heavy.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Uni Sans';
+    src: url('./assets/fonts/uni-sans/Uni Sans Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+.uni-sans-heavy {
+    font-family: 'Uni Sans', sans-serif;
+    font-weight: 900;
+}
+
+.uni-sans-thin {
+    font-family: 'Uni Sans', sans-serif;
+    font-weight: 100;
+}

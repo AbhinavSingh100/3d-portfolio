@@ -4,7 +4,7 @@ import { Environment } from '@react-three/drei'
 import { Jellyfish } from './Jellyfish'
 import { OrthographicCamera } from '@react-three/drei'
 import * as THREE from 'three'
-import FloatingParticles from './sections/FloatingParticles'
+import FloatingParticles from './FloatingParticles'
 
 // The component now accepts the 'inFront' prop
 function ThreeDComp({ inFront }) {
